@@ -1,0 +1,87 @@
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+body {
+  min-width: 1366px;
+}
+
+.app-body {
+  height: 100%;
+  width: 100%;
+}
+
+.clearfix::after {
+  content:"";
+  display: block;
+  clear: both;
+}
+
+/* 菜单栏 */
+.app-nav {
+  height: 28px;
+  line-height: 28px;
+  background: #171414;
+  color: #fff;
+}
+/* 工具栏 */
+.app-tool {
+  height: 70px;
+  background: #f1f1f1;
+  box-sizing: border-box;
+  /* border-bottom: 1px solid #dadada; */
+}
+/* 内容区 */
+.app-content {
+  height: calc(100% - 118px);
+  position: relative;
+}
+/* 组件边栏 */
+.app-component {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 180px;
+  background: #f1f1f1;
+  z-index: 1;
+}
+/* 工作区 */
+.app-workspace {
+  position: relative;
+  margin-left: 180px;
+  margin-right: 180px;
+  background: darkgray;
+  height: 100%;
+  z-index: 2;
+}
+/* 配置边栏 */
+.app-config {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 180px;
+  background: #f1f1f1;
+  z-index: 1;
+}
+/* 状态栏 */
+.app-status {
+  height: 20px;
+  line-height: 20px;
+  background: #e8e8e8;
+  color: #5a5a5a;
+}
+/* 各个视图的标题 */
+.app-section-title {
+  height: 28px;
+  line-height: 28px;
+  font-size: 12px;
+  background: #171414;
+  color: #fff;
+  padding-left: 10px;
+}

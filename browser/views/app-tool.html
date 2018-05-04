@@ -1,0 +1,54 @@
+<style>
+  .app-tool-view {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .app-tool-view .tool-box {}
+</style>
+
+<div class="app-tool-view">
+
+  <div class="tool-box">
+    保存
+  </div>
+  <div class="tool-box">
+    节点的增删改查,复制, 节点的相关属性控制
+  </div>
+  <div class="tool-box">
+    节点对齐方式(左对齐, 居中对齐, 右对齐, 顶部对齐, 垂直对齐, 底部对齐)
+  </div>
+  <div class="tool-box">
+    层级方式, 上一层, 下一层, 顶层, 底层, 组合,取消组合,
+  </div>
+  <div class="tool-box">
+    常规样式(字体, 边框, 背景)
+  </div>
+  <div class="tool-box">
+    文本居中对齐方式
+  </div>
+  <div class="tool-box">
+    预览, 发布
+  </div>
+
+</div>
+
+<script>
+
+  // 分组
+  // 排列
+
+  !(function () {
+    let app = new Vue({
+      el: '.app-tool-view',
+      data: {
+
+      },
+      methods: {
+
+      }
+    });
+
+  })();
+</script>

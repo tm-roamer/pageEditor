@@ -1,0 +1,272 @@
+/* @特殊处理 防止拖拽过程文本选中 */
+
+.workspace-user-select {
+  user-select: none !important;
+}
+
+.workspace-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  width: 90%;
+}
+
+.workspace {
+  position: relative;
+  /* width: 900px; */
+  /* height: 470px; */
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: #fff;
+}
+
+.workspace-node {
+  cursor: move;
+}
+
+.workspace-drag-image {
+  position: absolute;
+  z-index: 20010;
+}
+
+.drag-image-hide {
+  display: none !important;
+}
+
+.workspace .workspace-node {
+  position: absolute;
+  cursor: move;
+}
+
+/* .workspace .workspace-drag-image {
+  position: fixed;
+} */
+
+.workspace .node-bound-anime {
+  transition: all ease 0.2s;
+}
+
+/* 八角四线句柄 */
+.workspace-zoom {
+  --zoom-line-color: #a5a5a5;
+  --zoom-line-size: 1px;
+  --zoom-bar-size: 8px;
+  --zoom-bar-coord: -4px;
+  --zoom-bar-color: #848484;
+  user-select: none;
+}
+
+.zoom-line, .zoom-bar {
+  display: none;
+}
+
+.workspace-zoom .zoom-line, 
+.workspace-zoom .zoom-bar {
+  display: block;
+}
+
+.workspace-zoom .zoom-line {
+  position: absolute;
+  z-index: 20000;
+  background-color: var(--zoom-line-color);
+}
+
+.workspace-zoom .zoom-line[type="top"] {
+  top: 0;
+  height: var(--zoom-line-size);
+  width: 100%;
+}
+
+.workspace-zoom .zoom-line[type="left"] {
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--zoom-line-size);
+}
+
+.workspace-zoom .zoom-line[type="right"] {
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: var(--zoom-line-size);
+}
+
+.workspace-zoom .zoom-line[type="bottom"] {
+  bottom: 0;
+  height: var(--zoom-line-size);
+  width: 100%;
+}
+
+.workspace-zoom .zoom-bar {
+  position: absolute;
+  z-index: 20001;
+  width: var(--zoom-bar-size);
+  height: var(--zoom-bar-size);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--zoom-bar-color);
+  background-color: #fff;
+}
+
+.workspace-zoom .zoom-bar[type="n"] {
+  top: var(--zoom-bar-coord);
+  left: calc(50% + var(--zoom-bar-coord));
+  cursor: row-resize;
+}
+
+.workspace-zoom .zoom-bar[type="ne"] {
+  top: var(--zoom-bar-coord);
+  right: var(--zoom-bar-coord);
+  cursor: nesw-resize;
+}
+
+.workspace-zoom .zoom-bar[type="e"] {
+  top: calc(50% + var(--zoom-bar-coord));
+  right: var(--zoom-bar-coord);
+  cursor: col-resize;
+}
+
+.workspace-zoom .zoom-bar[type="se"] {
+  bottom: var(--zoom-bar-coord);
+  right: var(--zoom-bar-coord);
+  cursor: nwse-resize;
+}
+
+.workspace-zoom .zoom-bar[type="s"] {
+  bottom: var(--zoom-bar-coord);
+  left: calc(50% + var(--zoom-bar-coord));
+  cursor: row-resize;
+}
+
+.workspace-zoom .zoom-bar[type="sw"] {
+  bottom: var(--zoom-bar-coord);
+  left: var(--zoom-bar-coord);
+  cursor: nesw-resize;
+}
+
+.workspace-zoom .zoom-bar[type="w"] {
+  top: calc(50% + var(--zoom-bar-coord));
+  left: var(--zoom-bar-coord);
+  cursor: col-resize;
+}
+
+.workspace-zoom .zoom-bar[type="nw"] {
+  top: var(--zoom-bar-coord);
+  left: var(--zoom-bar-coord);
+  cursor: nwse-resize;
+}
+
+/* 右击菜单 */
+
+.workspace-contextmenu {
+  position: absolute;
+  z-index: 2147483647;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(40, 40, 40, 0.14);
+  padding: 5px 0;
+  color: #585858;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* 条目样式 */
+
+.workspace-contextmenu .contextmenu-item {
+  position: relative;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  min-width: 120px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.workspace-contextmenu .contextmenu-item a {
+  color: inherit;
+}
+
+/* 悬停或者选中 */
+
+.workspace-contextmenu .contextmenu-item:hover, 
+.workspace-contextmenu .contextmenu-item-active {
+  color: #50aff2;
+}
+
+/* 普通 */
+
+.workspace-contextmenu .contextmenu-item-normal {
+  cursor: pointer;
+}
+
+/* 禁用 */
+
+.workspace-contextmenu .contextmenu-item-disabled {
+  cursor: default;
+  color: #d0d0d0 !important;
+}
+
+/* 分割线 */
+
+.workspace-contextmenu .contextmenu-item-line {
+  margin: 5px 0;
+  height: 1px;
+  width: 100%;
+  background-color: #f0f0f0;
+  min-width: 0;
+  padding: 0;
+  cursor: default;
+}
+
+/* dialog */
+
+.workspace-contextmenu>.contextmenu-item-dialog {
+  position: relative;
+}
+
+.workspace-contextmenu>.contextmenu-item-dialog::after {
+  content: '...';
+  position: relative;
+  left: -3px;
+}
+
+/* 子菜单 */
+
+.workspace-contextmenu >.contextmenu-item > .contextmenu-item-submenu {
+  display: none;
+}
+
+.workspace-contextmenu>.contextmenu-item:hover > .contextmenu-item-submenu {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+/* 子菜单 下拉箭头 */
+
+.workspace-contextmenu .contextmenu-item-arrow {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+}
+
+.workspace-contextmenu .contextmenu-item-arrow:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 3px solid transparent;
+  border-left: 6px solid #585858;
+  border-bottom: 3px solid transparent;
+}
+
+.workspace-contextmenu .contextmenu-item:hover>.contextmenu-item-arrow:before, 
+.workspace-contextmenu .contextmenu-item.active>.contextmenu-item-arrow:before {
+  border-left-color: #50aff2;
+}

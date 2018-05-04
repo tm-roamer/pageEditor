@@ -1,0 +1,77 @@
+/* 框架样式主文件 */
+:root {
+  --header-bg-color: #24292e;
+  --header-color: rgba(255, 255, 255, 0.75);
+  --header-height: 48px;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.app-body {
+  height: 100%;
+}
+
+.app-header {
+  position: relative;
+  height: 48px;
+  color: var(--header-color);
+  background-color: var(--header-bg-color);
+}
+
+.app-header .logo {
+  position: absolute;
+  top: 16px;
+  left: 15px;
+}
+
+.app-header .nav {
+  padding-left: 300px;
+  padding-right: 300px;
+  line-height: var(--header-height);
+}
+
+.app-header .nav .nav-item {
+  cursor: pointer;
+  user-select: none;
+  margin-right: 20px;
+}
+
+.app-header .nav .nav-item.active,
+.app-header .nav .nav-item:hover {
+  color: #fff;
+}
+
+.app-header .user-info {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+}
+
+.app-content {
+  position: relative;
+  height: calc(100% - var(--header-height));
+}

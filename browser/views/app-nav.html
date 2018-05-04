@@ -1,0 +1,88 @@
+<style>
+  .app-nav-view {
+    padding: 0 10px;
+    font-size: 13px;
+  }
+
+  .app-nav-view .el-button {
+    padding: 0;
+  }
+
+  .app-nav-view .logo {
+    position: absolute;
+    top: 0;
+    left: 20px;
+  }
+
+  .app-nav-view .nav {
+    padding-left: 100px;
+  }
+
+  .app-nav-view .nav > li {
+    float: left;
+    padding: 0 15px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .app-nav-view .nav > li:hover {
+    background-color: dodgerblue;
+  }
+
+  .app-nav-view .nav > li:hover > .sub-nav {
+    display: block;
+  }
+
+  .app-nav-view .sub-nav {
+    display: none;
+    position: absolute;
+    background: #181313;
+    top: 24px;
+    left: 0;
+    padding: 5px 0;
+  }
+
+  .app-nav-view .sub-nav > li {
+    min-width: 150px;
+    padding: 0 15px;
+    height: 22px;
+    line-height: 22px;
+  }
+
+  .app-nav-view .sub-nav > li:hover {
+    background-color: dodgerblue;
+  }
+</style>
+
+<div class="app-nav-view">
+  <!-- <el-button type="text">LOGO</el-button> -->
+  <span class="logo">大屏展示系统</span>
+  <ul class="nav clearfix">
+    <li>文件
+      <ul class="sub-nav clearfix">
+        <li>test</li>
+        <li>test</li>
+      </ul>
+    </li>
+    <li>编辑</li>
+    <li>显示</li>
+    <li>窗口</li>
+    <li>配置</li>
+    <li>帮助</li>
+  </ul>
+</div>
+
+<script>
+  !(function () {
+    let app = new Vue({
+      el: '.app-nav-view',
+      data: {
+
+      },
+      methods: {
+
+      }
+    });
+
+  })();
+</script>

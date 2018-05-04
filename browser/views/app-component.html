@@ -1,0 +1,157 @@
+<style>
+  .app-component-view {
+    font-size: 13px;
+    height: 100%;
+  }
+
+  .app-component-view .el-tabs__item {
+    padding: 0 10px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
+    position: relative;
+  }
+
+  .app-component-view .el-tabs--bottom .el-tabs--left .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--bottom .el-tabs--right .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--bottom.el-tabs--border-card .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--bottom.el-tabs--card .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--top .el-tabs--left .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--top .el-tabs--right .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--top.el-tabs--border-card .el-tabs__item:nth-child(2),
+  .app-component-view .el-tabs--top.el-tabs--card .el-tabs__item:nth-child(2) {
+    padding-left: 10px;
+  }
+
+  .app-component-view .el-tabs--bottom .el-tabs--left .el-tabs__item:last-child,
+  .app-component-view .el-tabs--bottom .el-tabs--right .el-tabs__item:last-child,
+  .app-component-view .el-tabs--bottom.el-tabs--border-card .el-tabs__item:last-child,
+  .app-component-view .el-tabs--bottom.el-tabs--card .el-tabs__item:last-child,
+  .app-component-view .el-tabs--top .el-tabs--left .el-tabs__item:last-child,
+  .app-component-view .el-tabs--top .el-tabs--right .el-tabs__item:last-child,
+  .app-component-view .el-tabs--top.el-tabs--border-card .el-tabs__item:last-child,
+  .app-component-view .el-tabs--top.el-tabs--card .el-tabs__item:last-child {
+    padding-right: 10px;
+  }
+
+
+  .app-component-view .el-tabs--border-card {
+    height: calc(100% - 28px);
+    box-shadow: none;
+  }
+
+  .app-component-view .el-tabs--border-card > .el-tabs__content {
+    padding: 5px;
+    height: calc(100% - 28px);
+    overflow: auto;
+  }
+
+  .app-component-view .node-container {
+    position: relative;
+  }
+
+  .app-component-view .node-container .item {
+    display: inline-block;
+    margin: 4px 4px;
+  }
+
+  .workspace-node {
+    width: 48px;
+    height: 48px;
+    background-color: orange;
+  }
+</style>
+
+<div class="app-component-view">
+  <div class="app-section-title">
+    组件列表
+  </div>
+  <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+    <el-tab-pane label="元素" name="ui">
+
+      <div class="node-container">
+        <div class="item" v-for="node in elements">
+          <div class="workspace-node" :data-type="node.type">
+            <div class="node-inner">
+              {{node.type}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </el-tab-pane>
+    <el-tab-pane label="图表" name="chart">
+
+
+      <div class="node-container">
+        <div class="item" v-for="node in elements">
+          <div class="workspace-node" :data-type="node.type">
+            <div class="node-inner">
+              chart
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </el-tab-pane>
+    <el-tab-pane label="特效" name="effect">
+
+
+      <div class="node-container">
+        <div class="item" v-for="node in elements">
+          <div class="workspace-node" :data-type="node.type">
+            <div class="node-inner">
+              3d
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </el-tab-pane>
+  </el-tabs>
+</div>
+
+<script>
+  !(function () {
+    let app = new Vue({
+      el: '.app-component-view',
+      data: {
+        activeName: 'ui',
+        elements: [
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
+        ]
+      },
+      methods: {
+        handleClick(tab, event) {
+          console.log(tab, event);
+        }
+      }
+    });
+
+  })();
+</script>

@@ -1,0 +1,115 @@
+<style>
+  .app-config-view {
+    font-size: 13px;
+    height: 100%;
+  }
+
+  .app-config-view .el-tabs__item {
+    padding: 0 10px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
+    position: relative;
+  }
+
+  .app-config-view .el-tabs--bottom .el-tabs--left .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--bottom .el-tabs--right .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--bottom.el-tabs--border-card .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--bottom.el-tabs--card .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--top .el-tabs--left .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--top .el-tabs--right .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--top.el-tabs--border-card .el-tabs__item:nth-child(2),
+  .app-config-view .el-tabs--top.el-tabs--card .el-tabs__item:nth-child(2) {
+    padding-left: 10px;
+  }
+
+  .app-config-view .el-tabs--bottom .el-tabs--left .el-tabs__item:last-child,
+  .app-config-view .el-tabs--bottom .el-tabs--right .el-tabs__item:last-child,
+  .app-config-view .el-tabs--bottom.el-tabs--border-card .el-tabs__item:last-child,
+  .app-config-view .el-tabs--bottom.el-tabs--card .el-tabs__item:last-child,
+  .app-config-view .el-tabs--top .el-tabs--left .el-tabs__item:last-child,
+  .app-config-view .el-tabs--top .el-tabs--right .el-tabs__item:last-child,
+  .app-config-view .el-tabs--top.el-tabs--border-card .el-tabs__item:last-child,
+  .app-config-view .el-tabs--top.el-tabs--card .el-tabs__item:last-child {
+    padding-right: 10px;
+  }
+
+
+  .app-config-view .el-tabs--border-card {
+    height: calc(100% - 28px);
+    box-shadow: none;
+  }
+
+  .app-config-view .el-tabs--border-card>.el-tabs__content {
+    padding: 5px;
+    height: calc(100% - 28px);
+    overflow: auto;
+  }
+
+  .app-config-view .node-container {
+    position: relative;
+  }
+
+  .app-config-view .node-container .item {
+    display: inline-block;
+    margin: 4px 4px;
+  }
+
+  .workspace-node {
+    width: 48px;
+    height: 48px;
+    background-color: orange;
+  }
+</style>
+
+<div class="app-config-view">
+  <div class="app-section-title">
+    组件配置
+  </div>
+  <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+    <el-tab-pane label="样式" name="style">
+
+      样式
+
+    </el-tab-pane>
+    <el-tab-pane label="动画" name="animate">
+
+
+      动画
+
+
+    </el-tab-pane>
+    <el-tab-pane label="监听" name="event">
+
+
+      监听
+
+
+    </el-tab-pane>
+
+    <el-tab-pane label="接口" name="api">
+
+
+      接口
+
+
+    </el-tab-pane>
+  </el-tabs>
+</div>
+
+<script>
+  !(function () {
+    let app = new Vue({
+      el: '.app-config-view',
+      data: {
+        activeName: 'style',
+      },
+      methods: {
+        handleClick(tab, event) {
+          console.log(tab, event);
+        }
+      }
+    });
+
+  })();
+</script>

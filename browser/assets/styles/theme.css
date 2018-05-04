@@ -1,0 +1,6 @@
+/* 定制element-ui的样式文件 */
+
+.el-button a {
+  color: inherit;
+  text-decoration: none;
+}

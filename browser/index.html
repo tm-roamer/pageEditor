@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="/assets/styles/element-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="/assets/styles/pageEditor.css">
+  <link rel="stylesheet" type="text/css" href="/components/workspace/workspace.css">
+  <title>PageEditor</title>
+  <style>
+    .workspace-node[node-number="1"] {
+      width: 80px;
+      height: 80px;
+      background-color: red;
+    }
+
+    .workspace-node[node-number="2"] {
+      width: 80px;
+      height: 80px;
+      background-color: green;
+    }
+
+    .workspace-node[node-number="3"] {
+      width: 80px;
+      height: 80px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-body" id="app">
+    <!-- 导航菜单 -->
+    <div class="app-nav"></div>
+    <!-- 工具条 -->
+    <div class="app-tool"></div>
+
+    <div class="app-content">
+      <!-- 组件列表 -->
+      <div class="app-component"></div>
+      <!-- 工作区 -->
+      <div class="app-workspace">
+        <div class="workspace-container">
+          <div id="workspace" class="workspace"></div>
+        </div>
+      </div>
+      <!-- 组件配置 -->
+      <div class="app-config"></div>
+    </div>
+    <!-- 状态栏 -->
+    <div class="app-status"></div>
+  </div>
+
+  <script type="text/javascript" src="/assets/scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/page.js"></script>
+  <script type="text/javascript" src="/assets/scripts/vue.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/element-ui.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/axios.min.js"></script>
+  <script type="text/javascript" src="/assets/scripts/anime.min.js"></script>
+  <script type="module" src="/components/workspace/source/index.js"></script>
+
+  <script>
+
+    $(document).ready(() => {
+
+      $(".app-nav").load('./views/app-nav.html');
+      $(".app-tool").load('./views/app-tool.html');
+      $(".app-component").load('./views/app-component.html');
+      $(".app-config").load('./views/app-config.html');
+      $(".app-status").load('./views/app-status.html');
+
+      workspace = new window.Workspace({ el: "#workspace" });
+
+      window.a = {
+        data: {
+          x: 2,
+          y: 5
+        }
+      }
+
+      window.proxy = new Proxy(
+        // {
+        //   a: 1,
+        //   b: [2, 3]
+        // },
+        a.data,
+        {
+          get(target, name) {
+            console.log(target, name);
+            return target[name];
+          },
+          set(target, name, value) {
+            console.log(target, name, value);
+          }
+        }
+      );
+
+
+    });
+
+  </script>
+</body>
+
+</html>
