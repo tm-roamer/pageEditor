@@ -1,0 +1,198 @@
+<style>
+  .app-tool-view {
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .app-tool-view .tool-box {
+    border-right: 1px solid #d2d2d2;
+    padding-right: 10px;
+    height: 30px;
+    margin: 0 0 0 10px;
+  }
+
+  .app-tool-view .tool-box-big {}
+
+  .app-tool-view .icon {
+    color: #409EFF;
+    cursor: pointer;
+  }
+
+  .app-tool-view .el-button--mini,
+  .app-tool-view .el-button--mini.is-round {
+    padding: 4px 8px;
+    margin-top: 5px;
+  }
+
+  .app-tool-view .coord-form input {
+    padding: 0 2px;
+    width: 36px;
+    text-align: center;
+    height: 22px;
+    line-height: 22px;
+  }
+
+  .app-tool-view .coord-form .el-form-item {
+    /* margin-top: 10px; */
+    margin-bottom: 0;
+  }
+
+  .app-tool-view .coord-form .el-form-item__label {
+    padding: 0 5px 0 0;
+    line-height: 30px;
+  }
+
+  .app-tool-view .coord-form .el-form-item__content {
+    line-height: 30px;
+  }
+</style>
+
+<div class="app-tool-view">
+
+  <div class="tool-box tool-box-big">
+    <!-- 保存 -->
+    <el-button  size="mini">
+      <i class="icon iconfont icon-save icon-big"></i>
+    </el-button>
+  </div>
+  <div class="tool-box">
+    <el-row class="half">
+      <!-- 复制 -->
+      <el-button size="mini">
+        <i class="icon iconfont icon-copy"></i>
+      </el-button>
+      <!-- 删除 -->
+      <el-button size="mini">
+        <i class="icon iconfont icon-delete"></i>
+      </el-button>
+    </el-row>
+  </div>
+  <div class="tool-box">
+    <!-- 坐标 -->
+    <el-form :inline="true" :model="coord" class="coord-form">
+      <el-form-item label="x">
+        <el-input size="mini" v-model="coord.x" placeholder=""></el-input>
+      </el-form-item>
+      <el-form-item label="y">
+        <el-input size="mini" v-model="coord.y" placeholder=""></el-input>
+      </el-form-item>
+      <el-form-item label="w">
+        <el-input size="mini" v-model="coord.w" placeholder=""></el-input>
+      </el-form-item>
+      <el-form-item label="h">
+        <el-input size="mini" v-model="coord.h" placeholder=""></el-input>
+      </el-form-item>
+    </el-form>
+  </div>
+  <div class="tool-box">
+    <!-- 节点对齐方式 -->
+    <el-button-group>
+      <el-button size="mini">
+        <i class="icon iconfont icon-zuoduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-shuipingjuzhongduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-youduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-dingduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-chuizhijuzhongduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-diduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-hengxiangfenbu"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-zongxiangfenbu"></i>
+      </el-button>
+    </el-button-group>
+  </div>
+  <div class="tool-box">
+    <el-row>
+      <!-- 层级方式 -->
+      <el-button-group>
+        <el-button size="mini">
+          <i class="icon iconfont icon-zhiyudingceng"></i>
+        </el-button>
+        <el-button size="mini">
+          <i class="icon iconfont icon-shangyiyiceng"></i>
+        </el-button>
+        <el-button size="mini">
+          <i class="icon iconfont icon-xiayiyiceng"></i>
+        </el-button>
+        <el-button size="mini">
+          <i class="icon iconfont icon-zhiyudiceng"></i>
+        </el-button>
+      </el-button-group>
+      <!-- 组合,取消组合 -->
+      <el-button-group>
+        <el-button size="mini">
+          <i class="icon iconfont icon-zuhe"></i>
+        </el-button>
+        <el-button size="mini">
+          <i class="icon iconfont icon-quxiaozuhe"></i>
+        </el-button>
+      </el-button-group>
+    </el-row>
+  </div>
+  <div class="tool-box">
+    <!-- 文本对齐方式 -->
+    <el-button-group>
+      <el-button size="mini">
+        <i class="icon iconfont icon-zuoduiqi1"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-juzhongduiqi"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-youduiqi1"></i>
+      </el-button>
+      <el-button size="mini">
+        <i class="icon iconfont icon-liangduanduiqi"></i>
+      </el-button>
+    </el-button-group>
+  </div>
+  <div class="tool-box">
+    <!-- 预览 -->
+    <el-button  size="mini">
+      <i class="icon iconfont icon-yulan icon-big"></i>
+    </el-button>
+    <!-- 发布 -->
+    <el-button  size="mini">
+      <i class="icon iconfont icon-fabu icon-big"></i>
+    </el-button>
+  </div>
+
+</div>
+
+<script>
+
+  // 分组
+  // 排列
+
+  !(function () {
+    let app = new Vue({
+      el: '.app-tool-view',
+      data: {
+        coord: {
+          x: 0,
+          y: 0,
+          w: 0,
+          h: 0
+        }
+      },
+      methods: {
+
+      }
+    });
+
+  })();
+</script>

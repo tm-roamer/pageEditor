@@ -1,43 +1,23 @@
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-}
-
-body {
-  min-width: 1366px;
-}
-
-.app-body {
-  height: 100%;
-  width: 100%;
-}
-
-.clearfix::after {
-  content:"";
-  display: block;
-  clear: both;
-}
-
 /* 菜单栏 */
 .app-nav {
   height: 28px;
   line-height: 28px;
   background: #171414;
   color: #fff;
+  position: relative;
+  z-index: 2;
 }
 /* 工具栏 */
 .app-tool {
-  height: 70px;
+  height: 30px;
   background: #f1f1f1;
   box-sizing: border-box;
-  /* border-bottom: 1px solid #dadada; */
+  position: relative;
+  z-index: 1;
 }
 /* 内容区 */
 .app-content {
-  height: calc(100% - 118px);
+  height: calc(100% - 82px);
   position: relative;
 }
 /* 组件边栏 */
@@ -71,8 +51,8 @@ body {
 }
 /* 状态栏 */
 .app-status {
-  height: 20px;
-  line-height: 20px;
+  height: 24px;
+  line-height: 24px;
   background: #e8e8e8;
   color: #5a5a5a;
 }

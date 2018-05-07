@@ -1,0 +1,120 @@
+<style>
+  .app-status-view {
+    padding: 0 10px;
+    font-size: 12px;
+    display: flex;
+    flex-direction:row;
+  }
+
+  .app-status-view .status-box-margin {
+    margin-right: 15px;
+  }
+
+  .app-status-view .el-input__inner {
+    height: 20px;
+    line-height: 20px;
+    width: 80px;
+    border-radius: 0;
+  }
+
+  .app-status-view .el-select .el-input__inner {
+    width: 120px;
+  }
+
+  .app-status-view .el-input-number--mini {
+    line-height: 20px;
+  }
+
+  .app-status-view .el-input-number--mini .el-input-number__decrease,
+  .app-status-view .el-input-number--mini .el-input-number__increase {
+    width: 20px;
+  }
+
+  .app-status-view .el-button--mini,
+  .app-status-view .el-button--mini.is-round {
+    padding: 4px 6px;
+  }
+
+  .app-status-view .el-input-number--mini {
+    width: auto;
+  }
+
+  .app-status-view .el-input-number .el-input__inner {
+    width: 120px;
+  }
+
+  .app-status-view .el-input-number__decrease, 
+  .app-status-view .el-input-number__increase {
+    height: 18px;
+  }
+
+  .el-select-dropdown__item {
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+  }
+  .el-select-dropdown__item span {
+    line-height: 24px !important;
+  }
+</style>
+
+<div class="app-status-view">
+  <div class="status-box status-box-margin">
+    <el-input-number size="mini" v-model="scale" @change="handleChange" :min="25" :max="300" :step="25" label="描述文字"></el-input-number>
+    <el-button size="mini" @click="reset">
+      <i class="icon iconfont icon-fangda"></i>
+    </el-button>
+  </div>
+  <div class="status-box">
+    <el-input size="mini" v-model="w" placeholder=""></el-input>
+  </div>
+  <div class="status-box">
+    <i class="icon iconfont icon-cheng"></i>
+  </div>
+  <div class="status-box status-box-margin">
+    <el-input size="mini" v-model="h" placeholder=""></el-input>
+  </div>
+  <div class="status-box">
+    <el-select v-model="value" size="mini">
+      <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+      </el-option>
+    </el-select>
+  </div>
+</div>
+
+<script>
+  !(function () {
+    let app = new Vue({
+      el: '.app-status-view',
+      data: {
+        scale: 100,
+        w: 0,
+        h: 0,
+        options: [
+          {
+            value: 'Responsive',
+            label: 'Responsive'
+          },
+          {
+            value: 'IPhone6/7/8',
+            label: 'IPhone6/7/8'
+          },
+          {
+            value: 'IPad',
+            label: 'IPad'
+          }
+        ],
+        value: 'Responsive'
+      },
+      methods: {
+        handleChange(scale) {
+          console.log(scale);
+        },
+        reset() {
+          this.scale = 100
+        }
+      }
+    });
+
+  })();
+</script>

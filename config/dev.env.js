@@ -1,7 +1,7 @@
 module.exports = {
   env: 'development',
 	port: 9100,
-	path: '../browser',
+	path: '../src',
 	proxy: {
   	// 服务器
   	// target: 'http://120.27.11.231:8080'
