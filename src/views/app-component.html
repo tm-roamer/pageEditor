@@ -2,115 +2,126 @@
   .app-component-view {
     font-size: 13px;
     height: 100%;
+    color: #fff;
   }
 
-  .app-component-view .el-tabs__item {
-    padding: 0 10px;
-    height: 28px;
-    line-height: 28px;
+  .component-nav {
+    padding: 5px 0;
+  }
+
+  .component-nav>.item {
+    /* position: relative; */
+    width: 100%;
+    height: 50px;
+  }
+
+  .component-nav>.item .icon {
+    font-size: 24px;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  .component-nav>.item>.text {
+    text-align: center;
     font-size: 12px;
-    position: relative;
   }
 
-  .app-component-view .el-tabs--bottom .el-tabs--left .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--bottom .el-tabs--right .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--bottom.el-tabs--border-card .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--bottom.el-tabs--card .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--top .el-tabs--left .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--top .el-tabs--right .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--top.el-tabs--border-card .el-tabs__item:nth-child(2),
-  .app-component-view .el-tabs--top.el-tabs--card .el-tabs__item:nth-child(2) {
-    padding-left: 10px;
+  .component-nav>.item:hover {
+    background-color: dodgerblue;
+    color: #fff;
   }
 
-  .app-component-view .el-tabs--bottom .el-tabs--left .el-tabs__item:last-child,
-  .app-component-view .el-tabs--bottom .el-tabs--right .el-tabs__item:last-child,
-  .app-component-view .el-tabs--bottom.el-tabs--border-card .el-tabs__item:last-child,
-  .app-component-view .el-tabs--bottom.el-tabs--card .el-tabs__item:last-child,
-  .app-component-view .el-tabs--top .el-tabs--left .el-tabs__item:last-child,
-  .app-component-view .el-tabs--top .el-tabs--right .el-tabs__item:last-child,
-  .app-component-view .el-tabs--top.el-tabs--border-card .el-tabs__item:last-child,
-  .app-component-view .el-tabs--top.el-tabs--card .el-tabs__item:last-child {
-    padding-right: 10px;
+  .component-nav>.item:hover>.component-list {
+    display: block;
   }
 
-
-  .app-component-view .el-tabs--border-card {
-    height: calc(100% - 28px);
-    box-shadow: none;
-  }
-
-  .app-component-view .el-tabs--border-card > .el-tabs__content {
-    padding: 5px;
-    height: calc(100% - 28px);
+  .component-nav .component-list {
+    display: none;
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 0;
+    width: 300px;
+    height: calc(100% - 10px);
+    transform: translateX(100%);
+    background: #fff;
+    border: 1px solid #181313;
+    border-left: 0;
     overflow: auto;
   }
 
-  .app-component-view .node-container {
-    position: relative;
+  .empty-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #adadad;
   }
 
-  .app-component-view .node-container .item {
+  .component-group {
+    background-color: #fff;
+    color: #333;
+  }
+
+  .component-group .title {
+    background: #9e9e9e;
+    color: #fff;
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .component-group .components {
+    padding: 5px 0;
+  }
+
+  .component-group .component {
     display: inline-block;
-    margin: 4px 4px;
+    width: 98px;
+    margin-bottom: 10px;
   }
 
-  .workspace-node {
-    width: 48px;
-    height: 48px;
-    background-color: orange;
+  .component-group .component:hover {
+    /* background-color: red; */
+    /* border-radius: 5px; */
+    cursor: pointer;
+    color: dodgerblue;
+  }
+
+  .component-group .component div.icon {}
+
+  .component-group .component .text {
+    text-align: center;
   }
 </style>
 
 <div class="app-component-view">
-  <div class="app-section-title">
-    组件列表
-  </div>
-  <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
-    <el-tab-pane label="元素" name="ui">
-
-      <div class="node-container">
-        <div class="item" v-for="node in elements">
-          <div class="workspace-node" :data-type="node.type">
-            <div class="node-inner">
-              {{node.type}}
-            </div>
-          </div>
+  <ul class="component-nav">
+    <!-- 组件分类 -->
+    <li class="item" v-for="(n, i) in nav">
+      <div class="icon">
+        <i class="icon iconfont" :class="handleNodeIcon(n.name)"></i>
+      </div>
+      <div class="text">{{n.text}}</div>
+      <!-- 组件列表 -->
+      <div class="component-list">
+        <div class="empty-prompt" v-if="!n.group || n.group.length === 0">
+          暂无可用组件
+        </div>
+        <div class="component-group" v-for="g in n.group" v-if="n.group.length > 0">
+          <div class="title">{{g.title}}</div>
+          <ul class="components">
+            <!-- 组件 -->
+            <li class="component" v-for="c in g.components">
+              <div class="icon">
+                <i class="icon iconfont" :class="handleNodeIcon(c.name)"></i>
+              </div>
+              <div class="text">{{c.name}}</div>
+            </li>
+          </ul>
         </div>
       </div>
-
-    </el-tab-pane>
-    <el-tab-pane label="图表" name="chart">
-
-
-      <div class="node-container">
-        <div class="item" v-for="node in elements">
-          <div class="workspace-node" :data-type="node.type">
-            <div class="node-inner">
-              chart
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </el-tab-pane>
-    <el-tab-pane label="特效" name="effect">
-
-
-      <div class="node-container">
-        <div class="item" v-for="node in elements">
-          <div class="workspace-node" :data-type="node.type">
-            <div class="node-inner">
-              3d
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-    </el-tab-pane>
-  </el-tabs>
+    </li>
+  </ul>
 </div>
 
 <script>
@@ -119,36 +130,133 @@
       el: '.app-component-view',
       data: {
         activeName: 'ui',
-        elements: [
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-          {id: 0,parent: -1, type: 'div', x: 0, y: 0, width: 80,height: 80, layer: 1},
-        ]
+        nav: [
+          {
+            name: "lately",
+            text: '最近',
+            group: []
+          },
+          {
+            name: "component",
+            text: '组件',
+            group: [
+              {
+                title: "基本",
+                components: [
+                  { id: 0, name: 'div' },
+                  { id: 0, name: 'text' },
+                  { id: 0, name: 'a' },
+                  { id: 0, name: 'audio' },
+                  { id: 0, name: 'video' },
+                  { id: 0, name: 'script' },
+                  { id: 0, name: 'iframe' },
+                  { id: 0, name: 'img' },
+                ]
+              },
+              {
+                title: "表单",
+                components: [
+                  { id: 0, name: 'select' },
+                  { id: 0, name: 'switch' },
+                  { id: 0, name: 'input' },
+                  { id: 0, name: 'upload' },
+                  { id: 0, name: 'button' },
+                  { id: 0, name: 'checkbox' },
+                  { id: 0, name: 'radio' },
+                  { id: 0, name: 'inputNumber' },
+                  { id: 0, name: 'timePicker' },
+                  { id: 0, name: 'datePicker' },
+                  { id: 0, name: 'dateTimePicker' },
+                ]
+              },
+              {
+                title: "常规",
+                components: [
+                  { id: 0, name: 'table' },
+                  { id: 0, name: 'pagination' },
+                  { id: 0, name: 'carousel' },
+                  { id: 0, name: 'progress' },
+                  { id: 0, name: 'breadcrumb' },
+                  { id: 0, name: 'slider' },
+                  { id: 0, name: 'tab' },
+                  { id: 0, name: 'steps' },
+                  { id: 0, name: 'tree' },
+                  { id: 0, name: 'navMenu' },
+                  { id: 0, name: 'dropdown' },
+                  { id: 0, name: 'card' },
+                  { id: 0, name: 'transfer' },
+                  { id: 0, name: 'cascader' },
+                ]
+              },
+              {
+                title: "弹层",
+                components: [
+                  { id: 0, name: 'popover' },
+                  { id: 0, name: 'message' },
+                  { id: 0, name: 'alert' },
+                  { id: 0, name: 'tooltip' },
+                  { id: 0, name: 'dialog' },
+                  { id: 0, name: 'messageBox' },
+                  { id: 0, name: 'notification' },
+                ]
+              },
+              {
+                title: "其他",
+                components: [
+                  { id: 0, name: 'loading' },
+                  { id: 0, name: 'tag' },
+                  { id: 0, name: 'rate' },
+                  { id: 0, name: 'collapse' },
+                  { id: 0, name: 'badge' },
+                  { id: 0, name: 'colorPicker' },
+                ]
+              }
+            ]
+          },
+          {
+            name: "chart",
+            text: '图表',
+            group: [
+              {
+                title: "常规",
+                components: [
+                  { id: 0, name: 'chart-tree' },
+                  { id: 0, name: 'chart-scatter' },
+                  { id: 0, name: 'chart-gauge' },
+                  { id: 0, name: 'chart-pie' },
+                  { id: 0, name: 'chart-map' },
+                  { id: 0, name: 'chart-line' },
+                  { id: 0, name: 'chart-graph' },
+                  { id: 0, name: 'chart-radar' },
+                  { id: 0, name: 'chart-treemap' },
+                  { id: 0, name: 'chart-funnel' },
+                  { id: 0, name: 'chart-bar' },
+                  { id: 0, name: 'chart-area' },
+                  { id: 0, name: 'chart-sankey' },
+                ]
+              }
+            ]
+          },
+          { 
+            name: "shape",
+            text: '形状',
+          },
+          { 
+            name: "effect",
+            text: '特效',
+          },
+          { 
+            name: "sketch",
+            text: '示意图',
+          },
+        ],
       },
       methods: {
         handleClick(tab, event) {
           console.log(tab, event);
+        },
+        handleNodeIcon(name) {
+          return 'icon-' + name
         }
       }
     });

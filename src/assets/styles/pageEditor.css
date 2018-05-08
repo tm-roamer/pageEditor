@@ -26,18 +26,18 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 180px;
-  background: #f1f1f1;
-  z-index: 1;
+  width: 50px;
+  background: #171414;
+  z-index: 2;
 }
 /* 工作区 */
 .app-workspace {
   position: relative;
-  margin-left: 180px;
-  margin-right: 180px;
+  margin-left: 50px;
+  margin-right: 300px;
   background: darkgray;
   height: 100%;
-  z-index: 2;
+  z-index: 1;
 }
 /* 配置边栏 */
 .app-config {
@@ -45,7 +45,7 @@
   top: 0;
   right: 0;
   height: 100%;
-  width: 180px;
+  width: 300px;
   background: #f1f1f1;
   z-index: 1;
 }
