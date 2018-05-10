@@ -52,6 +52,11 @@
     组件配置
   </div>
   <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
+    <el-tab-pane label="配置" name="config">
+
+        配置
+
+    </el-tab-pane>
     <el-tab-pane label="样式" name="style">
 
       样式
@@ -87,7 +92,7 @@
     let app = new Vue({
       el: '.app-config-view',
       data: {
-        activeName: 'style',
+        activeName: 'config',
       },
       methods: {
         handleClick(tab, event) {

@@ -3,17 +3,34 @@
  */
 
 var path = require('path');
+
 var conf = require('../config/dev.env');
 const Koa = require('koa');
+const render = require('koa-ejs');					// 模板 https://github.com/koajs/ejs
+const bodyParser = require('koa-bodyparser');
 const etag = require('koa-etag');
 const serve = require('koa-static');
 const proxy = require('koa-proxies');
 const favicon = require('koa-favicon');
 const compress = require('koa-compress');
 const conditional = require('koa-conditional-get');
-// const historyFallback = require('koa2-history-api-fallback');
+const Router = require('koa-router');
+const historyFallback = require('koa2-history-api-fallback');
 
+// 模板
+const template = require('./router/template');												// 组件模板
+
+const router = Router();
 let app = new Koa();
+render(app, {
+	root: path.join(__dirname, 'template'),
+	layout: false,
+	viewExt: 'html',
+	cache: false,
+	debug: false
+});
+
+app.use(bodyParser());
 
 let opt = {
 	publicPath: path.resolve(__dirname, conf.path),
@@ -32,6 +49,9 @@ app.use(proxy('/api', {
 	// logs: true
 }));
 
+// 路由
+router.use('/template', template.routes());									// 组件模板
+
 // gzip压缩
 app.use(compress({
 	flush: require('zlib').Z_SYNC_FLUSH
@@ -48,11 +68,20 @@ app.use(etag());
 app.use(favicon(opt.publicPath + opt.favicon));
 
 // 静态资源
-app.use(serve(opt.publicPath, {extensions: ['html']}));
+app.use(serve(opt.publicPath, { extensions: ['html'] }));
 
-app.on('error', function(err){
+app.on('error', function (err) {
 	console.error('server error', err);
 });
+
+router.use('*', function (ctx, next) {
+	ctx.set('Cache-Control', 'no-cache');
+	ctx.set('Access-Control-Allow-Origin', '*');
+	ctx.set('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
+	next();
+});
+
+app.use(router['routes']());
 
 app.listen(opt.port);
 

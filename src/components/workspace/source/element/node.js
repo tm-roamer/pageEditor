@@ -1,5 +1,6 @@
 "use strict";
 
+import { constant } from "../config.js";
 import Cache from '../cache.js';
 import view from '../view.js'
 import utils from '../utils.js'
@@ -26,9 +27,19 @@ class Node {
   }
   createElement() {
     let dragType = "move";
-    let element = view.createNode(this._number, this.data.nodeType, dragType);
+    let element = this._createNode(this._number, this.data.nodeType, dragType);
     this.workspace.container.appendChild(element);
     return element;
+  }
+  _createNode(number, nodeType, dragType) {
+    let ele = document.createElement("div");
+    ele.classList.add(constant.WORKSPACE_NODE);
+    view.attr(ele, constant.NODE_NUMBER, number);
+    view.attr(ele, constant.DRAG_TYPE, dragType);
+    let part = nodeType.split("-").join("/");
+    // 加载组件
+    $(ele).load('/template/'+ part + '/' + nodeType + '-' + number);
+    return ele;
   }
   // 修改节点拖拽状态
   changeDragType(type) {

@@ -28,6 +28,7 @@ bug
 2. 容器带滚动条的请求,属于复杂情况如何控制
 3. 右击菜单的出现位置, 需要智能检测是否距底部了. 
 4. 代码需要整理和重构
+5. 交互需要修改了(拖拽 改成 点击)
 
 优化
 1. 数据传递方式 DataTransfer  clearData,  getData,  setData setDragImage(el, x , y);

@@ -1,0 +1,122 @@
+<style>
+  .app-button {
+    width: 100%;
+    height: 100%;
+  }
+  .app-button .el-button {
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<div class="app-button" id="<%= id %>">
+  <el-button
+    :size="setting.config.size.value"
+    :type="setting.config.type.value"
+    :plain="setting.config.plain.value"
+    :round="setting.config.round.value"
+    :circle="setting.config.circle.value"
+    :loading="setting.config.loading.value"
+    :disabled="setting.config.disabled.value"
+    :icon="setting.config.icon.value"
+    :native-type="setting.config['native-type'].value"
+    :autofocus="setting.config.autofocus.value">
+    <i class="icon iconfont" :class="'icon-' + setting.config.icon.value"></i>
+    {{setting.config.text.value}}
+    <i class="icon iconfont" :class="'icon-' + setting.config.icon.value"></i>
+  </el-button>
+</div>
+
+<script>
+  !(function () {
+
+    let appInput = new Vue({
+      el: '#<%= id %>',
+      data: {
+        setting: {
+          config: {
+            "size": {
+              label: "尺寸",
+              name: "size",
+              type: "select",
+              options: ["", "medium", "small", "mini"],
+              value: ""
+            },
+            "type": {
+              label: "类型",
+              name: "type",
+              type: "select",
+              options: ["", "primary", "success", "warning", "danger", "info", "text"],
+              value: "primary"
+            },
+            "plain": {
+              label: "朴素按钮",
+              name: "plain",
+              type: "radio",
+              options: [false, true],
+              value: false
+            },
+            "round": {
+              label: "圆角按钮",
+              name: "round",
+              type: "radio",
+              options: [false, true],
+              value: true
+            },
+            "circle": {
+              label: "圆形按钮",
+              name: "circle",
+              type: "radio",
+              options: [false, true],
+              value: false
+            },
+            "loading": {
+              label: "加载中状态",
+              name: "loading",
+              type: "radio",
+              options: [false, true],
+              value: false
+            },
+            "disabled": {
+              label: "禁用状态",
+              name: "disabled",
+              type: "radio",
+              options: [false, true],
+              value: false
+            },
+            "icon": {
+              label: "图标类名",
+              name: "icon",
+              type: "input",
+              value: ""
+            },
+            "text": {
+              label: "显示文字",
+              name: "text",
+              type: "input",
+              value: "按钮"
+            },
+            "autofocus": {
+              label: "是否默认聚焦",
+              name: "autofocus",
+              type: "radio",
+              options: [false, true],
+              value: false
+            },
+            "native-type": {
+              label: "原生type属性",
+              name: "native-type",
+              type: "select",
+              options: ["button", "submit", "reset"],
+              value: "button"
+            },
+          }
+        }
+      },
+      methods: {
+
+      }
+    });
+
+  })();
+</script>

@@ -59,15 +59,6 @@ export default {
     ele.classList.add(constant.WORKSPACE_NODE, constant.DRAG_IMAGE, constant.DRAG_IMAGE_HIDE);
     return ele;
   },
-  createNode(number, nodeType, dragType) {
-    let ele = document.createElement("div");
-    ele.classList.add(constant.WORKSPACE_NODE);
-    this.attr(ele, constant.NODE_NUMBER, number);
-    this.attr(ele, constant.DRAG_TYPE, dragType);
-    let inner = document.createElement(nodeType);
-    ele.appendChild(inner);
-    return ele;
-  },
   createContextMenu(conf) {
     let frag = document.createDocumentFragment();
     let ele = document.createElement('div');

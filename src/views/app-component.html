@@ -111,7 +111,7 @@
           <div class="title">{{g.title}}</div>
           <ul class="components">
             <!-- 组件 -->
-            <li class="component" v-for="c in g.components">
+            <li class="component workspace-node" drag-type="copy" :node-type="n.name + '-' + c.name" v-for="c in g.components">
               <div class="icon">
                 <i class="icon iconfont" :class="handleNodeIcon(c.name)"></i>
               </div>
@@ -123,7 +123,6 @@
     </li>
   </ul>
 </div>
-
 <script>
   !(function () {
     let app = new Vue({
@@ -137,8 +136,8 @@
             group: []
           },
           {
-            name: "component",
-            text: '组件',
+            name: "element",
+            text: '元素',
             group: [
               {
                 title: "基本",
@@ -237,11 +236,11 @@
               }
             ]
           },
-          { 
+          {
             name: "shape",
             text: '形状',
           },
-          { 
+          {
             name: "effect",
             text: '特效',
           },
