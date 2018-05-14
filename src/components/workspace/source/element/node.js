@@ -32,13 +32,18 @@ class Node {
     return element;
   }
   _createNode(number, nodeType, dragType) {
+    let self = this;
     let ele = document.createElement("div");
     ele.classList.add(constant.WORKSPACE_NODE);
     view.attr(ele, constant.NODE_NUMBER, number);
     view.attr(ele, constant.DRAG_TYPE, dragType);
     let part = nodeType.split("-").join("/");
+    let id = nodeType + '-' + number;
     // 加载组件
-    $(ele).load('/template/'+ part + '/' + nodeType + '-' + number);
+    $(ele).load('/template/' + part + '/' + id, function (res, status, xhr) {
+      self.component = app.component[id];
+      app.component[id].node = self;
+    });
     return ele;
   }
   // 修改节点拖拽状态

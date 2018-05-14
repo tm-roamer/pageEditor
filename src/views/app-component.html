@@ -124,141 +124,140 @@
   </ul>
 </div>
 <script>
-  !(function () {
-    let app = new Vue({
-      el: '.app-component-view',
-      data: {
-        activeName: 'ui',
-        nav: [
-          {
-            name: "lately",
-            text: '最近',
-            group: []
-          },
-          {
-            name: "element",
-            text: '元素',
-            group: [
-              {
-                title: "基本",
-                components: [
-                  { id: 0, name: 'div' },
-                  { id: 0, name: 'text' },
-                  { id: 0, name: 'a' },
-                  { id: 0, name: 'audio' },
-                  { id: 0, name: 'video' },
-                  { id: 0, name: 'script' },
-                  { id: 0, name: 'iframe' },
-                  { id: 0, name: 'img' },
-                ]
-              },
-              {
-                title: "表单",
-                components: [
-                  { id: 0, name: 'select' },
-                  { id: 0, name: 'switch' },
-                  { id: 0, name: 'input' },
-                  { id: 0, name: 'upload' },
-                  { id: 0, name: 'button' },
-                  { id: 0, name: 'checkbox' },
-                  { id: 0, name: 'radio' },
-                  { id: 0, name: 'inputNumber' },
-                  { id: 0, name: 'timePicker' },
-                  { id: 0, name: 'datePicker' },
-                  { id: 0, name: 'dateTimePicker' },
-                ]
-              },
-              {
-                title: "常规",
-                components: [
-                  { id: 0, name: 'table' },
-                  { id: 0, name: 'pagination' },
-                  { id: 0, name: 'carousel' },
-                  { id: 0, name: 'progress' },
-                  { id: 0, name: 'breadcrumb' },
-                  { id: 0, name: 'slider' },
-                  { id: 0, name: 'tab' },
-                  { id: 0, name: 'steps' },
-                  { id: 0, name: 'tree' },
-                  { id: 0, name: 'navMenu' },
-                  { id: 0, name: 'dropdown' },
-                  { id: 0, name: 'card' },
-                  { id: 0, name: 'transfer' },
-                  { id: 0, name: 'cascader' },
-                ]
-              },
-              {
-                title: "弹层",
-                components: [
-                  { id: 0, name: 'popover' },
-                  { id: 0, name: 'message' },
-                  { id: 0, name: 'alert' },
-                  { id: 0, name: 'tooltip' },
-                  { id: 0, name: 'dialog' },
-                  { id: 0, name: 'messageBox' },
-                  { id: 0, name: 'notification' },
-                ]
-              },
-              {
-                title: "其他",
-                components: [
-                  { id: 0, name: 'loading' },
-                  { id: 0, name: 'tag' },
-                  { id: 0, name: 'rate' },
-                  { id: 0, name: 'collapse' },
-                  { id: 0, name: 'badge' },
-                  { id: 0, name: 'colorPicker' },
-                ]
-              }
-            ]
-          },
-          {
-            name: "chart",
-            text: '图表',
-            group: [
-              {
-                title: "常规",
-                components: [
-                  { id: 0, name: 'chart-tree' },
-                  { id: 0, name: 'chart-scatter' },
-                  { id: 0, name: 'chart-gauge' },
-                  { id: 0, name: 'chart-pie' },
-                  { id: 0, name: 'chart-map' },
-                  { id: 0, name: 'chart-line' },
-                  { id: 0, name: 'chart-graph' },
-                  { id: 0, name: 'chart-radar' },
-                  { id: 0, name: 'chart-treemap' },
-                  { id: 0, name: 'chart-funnel' },
-                  { id: 0, name: 'chart-bar' },
-                  { id: 0, name: 'chart-area' },
-                  { id: 0, name: 'chart-sankey' },
-                ]
-              }
-            ]
-          },
-          {
-            name: "shape",
-            text: '形状',
-          },
-          {
-            name: "effect",
-            text: '特效',
-          },
-          { 
-            name: "sketch",
-            text: '示意图',
-          },
-        ],
-      },
-      methods: {
-        handleClick(tab, event) {
-          console.log(tab, event);
-        },
-        handleNodeIcon(name) {
-          return 'icon-' + name
-        }
-      }
-    });
 
-  })();
+  app.structure.component = new Vue({
+    el: '.app-component-view',
+    data: {
+      activeName: 'ui',
+      nav: [
+        {
+          name: "lately",
+          text: '最近',
+          group: []
+        },
+        {
+          name: "element",
+          text: '元素',
+          group: [
+            {
+              title: "基本",
+              components: [
+                { id: 0, name: 'div' },
+                { id: 0, name: 'text' },
+                { id: 0, name: 'a' },
+                { id: 0, name: 'audio' },
+                { id: 0, name: 'video' },
+                { id: 0, name: 'script' },
+                { id: 0, name: 'iframe' },
+                { id: 0, name: 'img' },
+              ]
+            },
+            {
+              title: "表单",
+              components: [
+                { id: 0, name: 'select' },
+                { id: 0, name: 'switch' },
+                { id: 0, name: 'input' },
+                { id: 0, name: 'upload' },
+                { id: 0, name: 'button' },
+                { id: 0, name: 'checkbox' },
+                { id: 0, name: 'radio' },
+                { id: 0, name: 'inputNumber' },
+                { id: 0, name: 'timePicker' },
+                { id: 0, name: 'datePicker' },
+                { id: 0, name: 'dateTimePicker' },
+              ]
+            },
+            {
+              title: "常规",
+              components: [
+                { id: 0, name: 'table' },
+                { id: 0, name: 'pagination' },
+                { id: 0, name: 'carousel' },
+                { id: 0, name: 'progress' },
+                { id: 0, name: 'breadcrumb' },
+                { id: 0, name: 'slider' },
+                { id: 0, name: 'tab' },
+                { id: 0, name: 'steps' },
+                { id: 0, name: 'tree' },
+                { id: 0, name: 'navMenu' },
+                { id: 0, name: 'dropdown' },
+                { id: 0, name: 'card' },
+                { id: 0, name: 'transfer' },
+                { id: 0, name: 'cascader' },
+              ]
+            },
+            {
+              title: "弹层",
+              components: [
+                { id: 0, name: 'popover' },
+                { id: 0, name: 'message' },
+                { id: 0, name: 'alert' },
+                { id: 0, name: 'tooltip' },
+                { id: 0, name: 'dialog' },
+                { id: 0, name: 'messageBox' },
+                { id: 0, name: 'notification' },
+              ]
+            },
+            {
+              title: "其他",
+              components: [
+                { id: 0, name: 'loading' },
+                { id: 0, name: 'tag' },
+                { id: 0, name: 'rate' },
+                { id: 0, name: 'collapse' },
+                { id: 0, name: 'badge' },
+                { id: 0, name: 'colorPicker' },
+              ]
+            }
+          ]
+        },
+        {
+          name: "chart",
+          text: '图表',
+          group: [
+            {
+              title: "常规",
+              components: [
+                { id: 0, name: 'chart-tree' },
+                { id: 0, name: 'chart-scatter' },
+                { id: 0, name: 'chart-gauge' },
+                { id: 0, name: 'chart-pie' },
+                { id: 0, name: 'chart-map' },
+                { id: 0, name: 'chart-line' },
+                { id: 0, name: 'chart-graph' },
+                { id: 0, name: 'chart-radar' },
+                { id: 0, name: 'chart-treemap' },
+                { id: 0, name: 'chart-funnel' },
+                { id: 0, name: 'chart-bar' },
+                { id: 0, name: 'chart-area' },
+                { id: 0, name: 'chart-sankey' },
+              ]
+            }
+          ]
+        },
+        {
+          name: "shape",
+          text: '形状',
+        },
+        {
+          name: "effect",
+          text: '特效',
+        },
+        {
+          name: "sketch",
+          text: '示意图',
+        },
+      ],
+    },
+    methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
+      },
+      handleNodeIcon(name) {
+        return 'icon-' + name
+      }
+    }
+  });
+
 </script>

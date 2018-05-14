@@ -53,7 +53,7 @@
 
   <div class="tool-box tool-box-big">
     <!-- 保存 -->
-    <el-button  size="mini">
+    <el-button size="mini">
       <i class="icon iconfont icon-save icon-big"></i>
     </el-button>
   </div>
@@ -162,11 +162,11 @@
   </div>
   <div class="tool-box">
     <!-- 预览 -->
-    <el-button  size="mini">
+    <el-button size="mini">
       <i class="icon iconfont icon-yulan icon-big"></i>
     </el-button>
     <!-- 发布 -->
-    <el-button  size="mini">
+    <el-button size="mini" @click="publish">
       <i class="icon iconfont icon-fabu icon-big"></i>
     </el-button>
   </div>
@@ -175,24 +175,24 @@
 
 <script>
 
-  // 分组
-  // 排列
-
-  !(function () {
-    let app = new Vue({
-      el: '.app-tool-view',
-      data: {
-        coord: {
-          x: 0,
-          y: 0,
-          w: 0,
-          h: 0
-        }
-      },
-      methods: {
-
+  app.structure.tool = new Vue({
+    el: '.app-tool-view',
+    data: {
+      coord: {
+        x: 0,
+        y: 0,
+        w: 0,
+        h: 0
       }
-    });
+    },
+    methods: {
+      publish() {
+        this.$confirm('确认发布吗？')
+          .then(() => {
+            
+          });
+      }
+    }
+  });
 
-  })();
 </script>

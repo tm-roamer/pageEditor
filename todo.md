@@ -108,3 +108,12 @@ code
 </script>
 </body>
 </html>
+
+// :size="setting.config.size.value"
+            // "size": {
+            //   label: "尺寸",
+            //   name: "size",
+            //   type: "select",
+            //   options: ["", "medium", "small", "mini"],
+            //   value: ""
+            // },

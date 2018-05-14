@@ -4,7 +4,6 @@ import event from "./event/event.js";
 import mouseEvent from './event/mouseEvent.js';
 import Workspace from "./workspace.js";
 
-
 mouseEvent.init();
 
 Object.assign(Workspace, event.init());

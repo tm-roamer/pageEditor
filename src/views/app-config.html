@@ -45,6 +45,19 @@
     height: calc(100% - 28px);
     overflow: auto;
   }
+
+  .app-config-view .el-form-item {
+    margin-bottom: 10px;
+  }
+
+  .app-config-view .el-form-item__label {
+    line-height: 30px;
+    font-size: 12px;
+  }
+
+  .app-config-view .el-form-item__content {
+    line-height: 30px;
+  }
 </style>
 
 <div class="app-config-view">
@@ -54,7 +67,31 @@
   <el-tabs v-model="activeName" type="border-card" @tab-click="handleClick">
     <el-tab-pane label="配置" name="config">
 
-        配置
+      <el-form :model="form" label-width="90px">
+        <el-form-item :label="item.label" v-for="item in setting.config">
+
+          <!-- 文本框 -->
+          <el-input v-if="item.type === 'input'" v-model="item.value" :name="item.name" size="mini"></el-input>
+
+          <!-- 下拉框 -->
+          <el-select v-if="item.type === 'select'" v-model="item.value" :name="item.name" size="mini">
+            <el-option :label="option" :value="option" v-for="option in item.options"></el-option>
+          </el-select>
+
+          <!-- 单选按钮 -->
+          <el-radio-group v-if="item.type === 'radio'" v-model="item.value" :name="item.name" size="mini">
+            <el-radio :label="option" v-for="option in item.options"></el-radio>
+          </el-radio-group>
+
+          <!-- 多选按钮 -->
+          <el-checkbox-group v-if="item.type === 'checkbox'" v-model="item.value" :name="item.name" size="mini">
+            <el-checkbox :label="option" :name="option" v-for="option in item.options"></el-checkbox>
+          </el-checkbox-group>
+
+          <!-- switch -->
+          <el-switch v-if="item.type === 'switch'" v-model="item.value"></el-switch>
+
+        </el-form-item>
 
     </el-tab-pane>
     <el-tab-pane label="样式" name="style">
@@ -88,18 +125,26 @@
 </div>
 
 <script>
-  !(function () {
-    let app = new Vue({
-      el: '.app-config-view',
-      data: {
-        activeName: 'config',
-      },
-      methods: {
-        handleClick(tab, event) {
-          console.log(tab, event);
-        }
-      }
-    });
 
-  })();
+  app.structure.config = new Vue({
+    el: '.app-config-view',
+    data: {
+      activeName: 'config',
+      // 等于组件模板的setting
+      setting: {
+        config: {},
+        style: {},
+        animate: {},
+        event: {},
+        api: {},
+      },
+      form: {}
+    },
+    methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
+      }
+    }
+  });
+
 </script>

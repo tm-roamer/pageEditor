@@ -205,13 +205,9 @@ let mouseEvent = {
     if (registry.isResize) {
       return resizeEvent.resizeEnd(evt);
     }
-    // 添加句柄
+    // 是否点击节点
     let node = Node.cache.get(registry.dragElement) || registry.node;
-    // 点击其他地方, 移除句柄
-    if (!node) {
-      registry.zoom && registry.zoom.destroy();
-      delete registry.zoom;
-    } else {
+    if (node) {
       // 节点是否拥有句柄 
       if (!node.zoom) {
         // 先移除其他节点的句柄
@@ -219,6 +215,14 @@ let mouseEvent = {
         // 再添加当前节点的句柄
         registry.zoom = new Zoom(node.workspace, node);
       }
+      // 联动其他结构单元
+      node.component && app.mountNode(node.component.$data.setting);
+    } else {
+      // 点击其他地方, 移除句柄
+      registry.zoom && registry.zoom.destroy();
+      delete registry.zoom;
+      // bug app-config内触发无效不需要卸载 卸载联动
+      // app.unmountNode();
     }
     delete registry.node;
     delete registry.dragElement;

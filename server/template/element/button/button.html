@@ -11,7 +11,7 @@
 
 <div class="app-button" id="<%= id %>">
   <el-button
-    :size="setting.config.size.value"
+    
     :type="setting.config.type.value"
     :plain="setting.config.plain.value"
     :round="setting.config.round.value"
@@ -28,20 +28,12 @@
 </div>
 
 <script>
-  !(function () {
 
-    let appInput = new Vue({
+    app.component["<%= id %>"] = new Vue({
       el: '#<%= id %>',
       data: {
         setting: {
           config: {
-            "size": {
-              label: "尺寸",
-              name: "size",
-              type: "select",
-              options: ["", "medium", "small", "mini"],
-              value: ""
-            },
             "type": {
               label: "类型",
               name: "type",
@@ -118,5 +110,4 @@
       }
     });
 
-  })();
 </script>
