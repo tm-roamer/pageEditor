@@ -53,7 +53,7 @@
 
   <div class="tool-box tool-box-big">
     <!-- 保存 -->
-    <el-button size="mini">
+    <el-button size="mini" @click="save">
       <i class="icon iconfont icon-save icon-big"></i>
     </el-button>
   </div>
@@ -189,8 +189,12 @@
       publish() {
         this.$confirm('确认发布吗？')
           .then(() => {
-            
+
           });
+      },
+      save() {
+        var list = app.structure.workspace.nodes.list();
+        
       }
     }
   });

@@ -25,7 +25,7 @@ let app = new Koa();
 render(app, {
 	root: path.join(__dirname, 'template'),
 	layout: false,
-	viewExt: 'html',
+	viewExt: 'ejs', // html
 	cache: false,
 	debug: false
 });

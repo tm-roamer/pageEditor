@@ -1,0 +1,70 @@
+{
+  "type": {
+    "label": "类型",
+    "name": "type",
+    "type": "select",
+    "options": ["", "primary", "success", "warning", "danger", "info", "text"],
+    "value": "primary"
+  },
+  "plain": {
+    "label": "朴素按钮",
+    "name": "plain",
+    "type": "radio",
+    "options": [false, true],
+    "value": false
+  },
+  "round": {
+    "label": "圆角按钮",
+    "name": "round",
+    "type": "radio",
+    "options": [false, true],
+    "value": true
+  },
+  "circle": {
+    "label": "圆形按钮",
+    "name": "circle",
+    "type": "radio",
+    "options": [false, true],
+    "value": false
+  },
+  "loading": {
+    "label": "加载中状态",
+    "name": "loading",
+    "type": "radio",
+    "options": [false, true],
+    "value": false
+  },
+  "disabled": {
+    "label": "禁用状态",
+    "name": "disabled",
+    "type": "radio",
+    "options": [false, true],
+    "value": false
+  },
+  "icon": {
+    "label": "图标类名",
+    "name": "icon",
+    "type": "input",
+    "value": ""
+  },
+  "text": {
+    "label": "显示文字",
+    "name": "text",
+    "type": "input",
+    "value": "按钮"
+  },
+  "autofocus": {
+    "label": "是否默认聚焦",
+    "name": "autofocus",
+    "type": "radio",
+    "options": [false, true],
+    "value": false
+  },
+  "native-type": {
+    "label": "原生type属性",
+    "name": "native-type",
+    "type": "select",
+    "options": ["button", "submit", "reset"],
+    "value": "button"
+  }
+}

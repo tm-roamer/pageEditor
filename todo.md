@@ -117,3 +117,68 @@ code
             //   options: ["", "medium", "small", "mini"],
             //   value: ""
             // },
+
+
+// app.use(function (ctx, next) {
+// 	let originalUrl = ctx.originalUrl.replace(/\/*$/, '');
+// 	// 判断原始地址和请求类型
+// 	if (!/^\/api\/config/i.test(originalUrl)
+// 			|| ctx.header['content-type'] !== 'application/json') {
+// 		next();
+// 	}
+// 	// 截取地址
+// 	let filePath = path.parse(__dirname + originalUrl + '.json');
+// 	let fullFilePath = filePath.dir + '/' + filePath.base;
+// 	// 如果文件不存在
+// 	if (!fs.existsSync(fullFilePath) && filePath.name) {
+// 		// 递归创建目录(如果不存在)
+// 		if (mkdirsSync(filePath.dir)) {
+// 			fs.writeFileSync(fullFilePath, getFormatData(), {flag: 'w+'});
+// 		}
+// 	}
+// 	// 判断请求类型(读, 写)
+// 	ctx.set('Content-Type', 'application/json');
+// 	let data = {
+// 		code: 200,
+// 		info: 'success'
+// 	};
+// 	let method = ctx.request.method.toLowerCase();
+// 	if (method === 'get') {
+// 		ctx.body = fs.readFileSync(fullFilePath);
+// 	} else {
+// 		let writeData = Object.assign({}, data);
+// 		writeData.data = ctx.request.body;
+// 		fs.writeFileSync(fullFilePath, getFormatData(writeData), {flag: 'w+'});
+// 		ctx.body = data
+// 	}
+// });
+//
+// // 格式化输出json
+// function getFormatData(d) {
+// 	return JSON.stringify(d || {}, undefined, 2)
+// }
+//
+// // 递归创建目录
+// function mkdirsSync(dirname, mode) {
+// 	if (fs.existsSync(dirname)) {
+// 		return true;
+// 	} else {
+// 		if (mkdirsSync(path.dirname(dirname), mode)) {
+// 			fs.mkdirSync(dirname, mode);
+// 			return true;
+// 		}
+// 	}
+// }
+
+config: getJSON(filePath, "config.json"),
+      style: getJSON(filePath, "style.json"),
+      animate: getJSON(filePath, "animate.json"),
+      event: getJSON(filePath, "event.json"),
+      api: getJSON(filePath, "api.json"),
+      
+function getJSON(filePath, fileName) {
+  let str = fs.readFileSync(path.join(filePath, fileName)).toString('utf8');
+  // return JSON.parse(str);
+  console.log(str);
+  return str;
+}
