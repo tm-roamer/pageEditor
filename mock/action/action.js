@@ -3,12 +3,14 @@ const router = Router();
 // const alarmProcess = require('../security/alarm/alarmProcess')
 
 //
-router.post('/test', function (ctx, next) {
+router.post('/', function (ctx, next) {
 	ctx.set('Content-Type', 'application/json');
 	var data = {
 		code: 200,
 		info: 'success',
-		data: []
+		data: [
+			{a: 1}
+		]
 	};
 	ctx.body = JSON.stringify(data);
 });

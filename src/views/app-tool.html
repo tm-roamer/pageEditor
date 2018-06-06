@@ -162,7 +162,7 @@
   </div>
   <div class="tool-box">
     <!-- 预览 -->
-    <el-button size="mini">
+    <el-button size="mini" @click="preview">
       <i class="icon iconfont icon-yulan icon-big"></i>
     </el-button>
     <!-- 发布 -->
@@ -186,15 +186,67 @@
       }
     },
     methods: {
+      preview() {
+        let self = this;
+        self.save(function () {
+          axios.get("/editor/preview").then(function (response) {
+            let data = response.data;
+            if (data.code === 200) {
+              window.open('http://localhost:9190/index.html');
+            }
+          });
+        });
+      },
       publish() {
-        this.$confirm('确认发布吗？')
+        let self = this;
+        self.$confirm('确认发布吗？')
           .then(() => {
 
           });
       },
-      save() {
-        var list = app.structure.workspace.nodes.list();
-        
+      save(event, callback) {
+        let self = this;
+        let arr = [];
+        let list = app.structure.workspace.nodes.list();
+        // // 整理数据
+        // for (let node of list) {
+        //   let n = node.data;
+        //   n.component = node.component.$data.setting;
+        //   arr.push(n);
+        // }
+        // axios.post('/editor/save', {arr: arr})
+        //   .then((response) => {
+        //     callback && callback(response.data);
+        //   });
+        // 整理请求
+        for (let node of list) {
+          let n = node.data;
+          let component = node.component.$data.setting;
+          // 插入节点
+          arr.push(axios.post('/api/action',
+            {
+              "insert": "editor_node",
+              "values": {
+                id: n.id,
+                x: n.x + '',
+                y: n.y + '',
+                w: n.w + '',
+                h: n.h + '',
+                layer: n.layer,
+                component_id: n.component_id
+              }
+            }));
+          // 插入组件
+          arr.push(axios.post('/api/action',
+            {
+              "insert": "editor_component",
+              "values": component
+            }));
+        }
+        axios.all(arr)
+          .then(axios.spread(function (...args) {
+            self.$message({ message: '保存成功', type: 'success' });
+          }));
       }
     }
   });

@@ -9,3 +9,5 @@ npm-debug.log*
 .vs
 net-poc-web.iml
 test/
+preview/
+publish/

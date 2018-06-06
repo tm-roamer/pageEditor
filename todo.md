@@ -21,6 +21,7 @@ todo list
 17. 预览 / 全屏
 18. 导入 / 导出
 19. 对于待添加的节点, 和拖拽后生成的节点, 其实共享同一份元数据
+20. 保存的时候, 如何控制不是all in, 而是增量, 如何跟撤销配合在一起.
 
 bug
 
@@ -37,77 +38,7 @@ bug
 
 code
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
-  <link rel="stylesheet" type="text/css" href="assets/styles/element-ui.min.css">
-  <link rel="stylesheet" type="text/css" href="assets/styles/theme.css">
-  <link rel="stylesheet" type="text/css" href="assets/styles/custom.css">
-  <title>VisualKit</title>
-</head>
-<body>
 
-<div class="app-body">
-  <div class="app-header">
-    <div class="logo">观安自现实验室 - 可视化展示系统</div>
-    <ul class="nav">
-      <li>
-        <a data-route="/" class="nav-item">首页</a>
-        <a data-route="/page" class="nav-item">页面</a>
-      </li>
-    </ul>
-    <div class="user-info">
-      <a>用户名</a>
-      <a>退出</a>
-    </div>
-  </div>
-  <div class="app-content" id="app-content">
-
-  </div>
-</div>
-
-<script type="text/javascript" src="assets/scripts/jquery.min.js"></script>
-<script type="text/javascript" src="assets/scripts/page.js"></script>
-<script type="text/javascript" src="assets/scripts/vue.min.js"></script>
-<script type="text/javascript" src="assets/scripts/element-ui.min.js"></script>
-<script type="text/javascript" src="assets/scripts/axios.min.js"></script>
-
-<script>
-  $(document).ready(function () {
-
-    let appContent = $("#app-content");
-
-    // 菜单跳转
-    let navItem = $(".nav .nav-item");
-    navItem.on('click', function() {
-      navItem.removeClass("active");
-      page($(this).addClass("active").data("route"));
-    });
-
-    // 路由配置
-    // page.base('/');
-    page({
-      hashbang: true   // 通过#号跳转
-    });
-    page('/', (ctx, next) => {
-      appContent.html('<div class="center">hello world</div>');
-    });
-    page('/page', (ctx, next) => {
-      appContent.load("views/page.html");
-      // $("#app").html(await $.get('page.html'));
-    });
-
-    // 启动当前路由页面
-    const regExp = /^#!/;
-    const hash = location.hash;
-    page(hash.search(regExp) >= 0 ? hash.replace(regExp, "") : '/' );
-
-  });
-</script>
-</body>
-</html>
 
 // :size="setting.config.size.value"
             // "size": {
@@ -169,16 +100,3 @@ code
 // 		}
 // 	}
 // }
-
-config: getJSON(filePath, "config.json"),
-      style: getJSON(filePath, "style.json"),
-      animate: getJSON(filePath, "animate.json"),
-      event: getJSON(filePath, "event.json"),
-      api: getJSON(filePath, "api.json"),
-      
-function getJSON(filePath, fileName) {
-  let str = fs.readFileSync(path.join(filePath, fileName)).toString('utf8');
-  // return JSON.parse(str);
-  console.log(str);
-  return str;
-}

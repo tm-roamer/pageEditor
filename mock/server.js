@@ -7,7 +7,7 @@ const serve = require('koa-static');
 const bodyParser = require('koa-bodyparser');
 
 // const login = require('./login/login');															// 登录
-const overview = require('./overview/overview');												// 全网总览
+const action = require('./action/action');												// 全网总览
 
 const router = Router();
 const app = new Koa();
@@ -22,12 +22,12 @@ router.use('*', function (ctx, next) {
 app.use(bodyParser());
 
 // router.use('/api/loginuser',loginUser.routes());							// 登录
-router.use('/api/overview', overview.routes());									// 全网总览
+router.use('/api/action', action.routes());									// 全网总览
 
 app.use(router['routes']());
 
 // 静态资源
-app.use(serve(path.resolve(__dirname, '../dist'), { extensions: ['html'] }));
+app.use(serve(path.resolve(__dirname, '../preview'), { extensions: ['html'] }));
 
 app.listen(9190);
 

@@ -18,6 +18,7 @@ class Node {
   }
   setData(coord, nodeType) {
     let data = Object.assign({}, coord);
+    data.id = this._number;
     data.layer = Node.layer;
     data.nodeType = nodeType;
     return utils.setCoord(data);
@@ -37,12 +38,16 @@ class Node {
     ele.classList.add(constant.WORKSPACE_NODE);
     view.attr(ele, constant.NODE_NUMBER, number);
     view.attr(ele, constant.DRAG_TYPE, dragType);
-    let part = nodeType.split("-").join("/");
-    let id = nodeType + '-' + number;
+    let tmp = nodeType.split("-");
+    let type = tmp[0];
+    let part = tmp[1];
+    let id = number;
+    let name = nodeType + '-' + number;
     // 加载组件
-    $(ele).load('/template/' + part + '/' + id, function (res, status, xhr) {
-      self.component = app.component[id];
-      app.component[id].node = self;
+    $(ele).load('/template/' + type + '/' + part + '/' + id, function (res, status, xhr) {
+      self.component = app.component[name];
+      self.data.component_id = name;
+      app.component[name].node = self;
     });
     return ele;
   }

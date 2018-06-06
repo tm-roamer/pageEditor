@@ -4,8 +4,8 @@ module.exports = {
 	path: '../src',
 	proxy: {
   	// 服务器
-  	// target: 'http://120.27.11.231:8080'
+  	// target: 'http://192.168.101.3:8080'
 		// 本地
-		target: 'http://localhost:3100'
+		target: 'http://localhost:8080'
 	}
 };

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="assets/styles/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles/element-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles/theme.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles/custom.css">
+  <title>Preview</title>
+</head>
+
+<body>
+
+  <div class="app-body">
+    hello world
+  </div>
+
+  <script type="text/javascript" src="assets/scripts/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/scripts/page.js"></script>
+  <script type="text/javascript" src="assets/scripts/vue.min.js"></script>
+  <script type="text/javascript" src="assets/scripts/element-ui.min.js"></script>
+  <script type="text/javascript" src="assets/scripts/axios.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      // let appContent = $("#app-content");
+
+      // // 菜单跳转
+      // let navItem = $(".nav .nav-item");
+      // navItem.on('click', function () {
+      //   navItem.removeClass("active");
+      //   page($(this).addClass("active").data("route"));
+      // });
+
+      // // 路由配置
+      // // page.base('/');
+      // page({
+      //   hashbang: true   // 通过#号跳转
+      // });
+      // page('/', (ctx, next) => {
+      //   appContent.html('<div class="center">hello world</div>');
+      // });
+      // page('/page', (ctx, next) => {
+      //   appContent.load("views/page.html");
+      //   // $("#app").html(await $.get('page.html'));
+      // });
+
+      // // 启动当前路由页面
+      // const regExp = /^#!/;
+      // const hash = location.hash;
+      // page(hash.search(regExp) >= 0 ? hash.replace(regExp, "") : '/');
+
+    });
+  </script>
+</body>
+
+</html>
