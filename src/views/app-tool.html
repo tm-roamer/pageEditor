@@ -53,7 +53,7 @@
 
   <div class="tool-box tool-box-big">
     <!-- 保存 -->
-    <el-button size="mini" @click="save">
+    <el-button size="mini" @click="save()">
       <i class="icon iconfont icon-save icon-big"></i>
     </el-button>
   </div>
@@ -199,54 +199,43 @@
       },
       publish() {
         let self = this;
-        self.$confirm('确认发布吗？')
-          .then(() => {
+        self.$confirm('确认发布吗？').then(() => {
 
-          });
+        });
       },
-      save(event, callback) {
+      save(callback) {
         let self = this;
         let arr = [];
         let list = app.structure.workspace.nodes.list();
-        // // 整理数据
-        // for (let node of list) {
-        //   let n = node.data;
-        //   n.component = node.component.$data.setting;
-        //   arr.push(n);
-        // }
-        // axios.post('/editor/save', {arr: arr})
-        //   .then((response) => {
-        //     callback && callback(response.data);
-        //   });
+        if (list.length === 0) {
+          return self.$message({ message: '没有可以保存的节点', type: 'error' });
+        }
         // 整理请求
         for (let node of list) {
           let n = node.data;
           let component = node.component.$data.setting;
           // 插入节点
-          arr.push(axios.post('/api/action',
-            {
-              "insert": "editor_node",
-              "values": {
-                id: n.id,
-                x: n.x + '',
-                y: n.y + '',
-                w: n.w + '',
-                h: n.h + '',
-                layer: n.layer,
-                component_id: n.component_id
-              }
-            }));
-          // 插入组件
-          arr.push(axios.post('/api/action',
-            {
-              "insert": "editor_component",
-              "values": component
-            }));
-        }
-        axios.all(arr)
-          .then(axios.spread(function (...args) {
-            self.$message({ message: '保存成功', type: 'success' });
+          arr.push(axios.post('/api/action', {
+            "insert": "editor_node",
+            "values": {
+              id: n.id,
+              x: n.x + '',
+              y: n.y + '',
+              w: n.w + '',
+              h: n.h + '',
+              layer: n.layer,
+              component_id: n.component_id
+            }
           }));
+          // 插入组件
+          arr.push(axios.post('/api/action', {
+            "insert": "editor_component",
+            "values": component
+          }));
+        }
+        axios.all(arr).then(axios.spread(function (...args) {
+          callback ? callback() : self.$message({ message: '保存成功', type: 'success' });
+        }));
       }
     }
   });
